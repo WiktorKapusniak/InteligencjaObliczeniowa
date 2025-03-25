@@ -16,7 +16,7 @@ for col in df.columns:
 #b)
 for col in df.columns:
     if col != "variety":
-        mask = (df[col].isna()) | (df[col] < 0) | (df[col] > 15)
+        mask = (df[col].isna()) | (df[col] <= 0) | (df[col] > 15)
         median_value = df[col].median(skipna=True)
         df.loc[mask, col] = median_value
 # print(df.isnull().sum())
