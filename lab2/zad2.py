@@ -7,7 +7,7 @@ iris = load_iris()
 X = iris.data
 y = iris.target
 
-# Wykonaj PCA (kompresja danych do 2 lub 3 wymiarów)
+#PCA kompresja
 pca = PCA(n_components=3)
 X_reduced = pca.fit_transform(X)
 

@@ -2,19 +2,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
-# Załaduj dane
 file_path = "iris1.csv"
 df = pd.read_csv(file_path)
 
-# Kolumny odpowiadające długości i szerokości kielicha
 sepal_length = df['sepal.length']
 sepal_width = df['sepal.width']
-target = df['variety']  # Zmieniono na 'variety', zakładając, że kolumna z gatunkami nazywa się 'variety'
+target = df['variety']
 
-# Mapowanie gatunków na różne kolory
 colors = {'Setosa': 'r', 'Versicolor': 'g', 'Virginica': 'b'}
-
-# Tworzymy wykres dla oryginalnych danych
+#oryginalne
 plt.figure(figsize=(8, 6))
 for variety in colors:
     variety_data = df[df['variety'] == variety]
@@ -33,7 +29,6 @@ scaler = MinMaxScaler()
 df_normalized = df.copy()
 df_normalized[['sepal.length', 'sepal.width']] = scaler.fit_transform(df[['sepal.length', 'sepal.width']])
 
-# Tworzymy wykres dla danych znormalizowanych
 plt.figure(figsize=(8, 6))
 for variety in colors:
     variety_data = df_normalized[df_normalized['variety'] == variety]
@@ -52,7 +47,6 @@ scaler = StandardScaler()
 df_standardized = df.copy()
 df_standardized[['sepal.length', 'sepal.width']] = scaler.fit_transform(df[['sepal.length', 'sepal.width']])
 
-# Tworzymy wykres dla danych zeskalowanych
 plt.figure(figsize=(8, 6))
 for variety in colors:
     variety_data = df_standardized[df_standardized['variety'] == variety]
@@ -66,7 +60,6 @@ plt.legend()
 plt.savefig("iris_sepal_standardized.png")
 plt.show()
 
-# Wyświetlamy statystyki: min, max, mean, standard deviation
 print("Original Data Stats:")
 print(df[['sepal.length', 'sepal.width']].describe())
 
